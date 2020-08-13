@@ -1,0 +1,4 @@
+oc --namespace openshift-ingress create secret tls custom-certs-default --cert=./certificate.pem --key=./key.pem
+oc patch --type=merge --namespace openshift-ingress-operator ingresscontrollers/default --patch '{"spec":{"defaultCertificate":{"name":"custom-certs-default"}}}'
+oc get --namespace openshift-ingress-operator ingresscontrollers/default --output jsonpath='{.spec.defaultCertificate}'
+
